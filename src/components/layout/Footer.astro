@@ -1,0 +1,160 @@
+---
+import { MapPin, Phone, Mail, Youtube, Instagram } from 'lucide-react';
+import { CONTACT_INFO, SOCIAL_MEDIA } from '@/lib/constants';
+---
+
+<footer id="kontak" class="bg-[#0B1120] text-gray-300 pt-20 pb-0">
+  <div class="container mx-auto px-6 mb-12">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+      <!-- COLUMN 1: BRANDING -->
+      <div class="col-span-1">
+        <div class="flex items-center space-x-3 mb-6">
+          <!-- LOGO -->
+          <div class="w-12 h-12 rounded-xl overflow-hidden shadow-lg">
+            <img
+              src="/image/logo_smapa.PNG"
+              alt="Logo SMAN 4 Jember"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <!-- NAMA SEKOLAH -->
+          <div class="flex flex-col">
+            <span class="font-extrabold text-2xl text-white tracking-wide font-space">
+              SMAN 4 JEMBER
+            </span>
+            <span class="text-sm text-emerald-200 tracking-widest">
+              Est. 1977
+            </span>
+          </div>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-6 text-gray-400">
+          Sekolah menengah atas yang berkomitmen mencetak generasi unggul, berkarakter, dan berprestasi di tingkat nasional maupun global.
+        </p>
+      </div>
+
+      <!-- COLUMN 2: MENU UTAMA -->
+      <div class="col-span-1">
+        <h4 class="text-white font-bold text-lg mb-6 font-space">Menu Utama</h4>
+        <ul class="space-y-3">
+          {[
+            { label: "Beranda", link: "/" },
+            { label: "Prestasi", link: "/#prestasi" },
+            { label: "Informasi", link: "/#berita" },
+            { label: "Galeri", link: "/galeri" },
+            { label: "PPDB 2026", link: "/ppdb" }
+          ].map((item) => (
+            <li class="flex items-center group">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3 group-hover:scale-125 transition-transform"></span>
+              <a href={item.link} class="text-sm text-gray-400 hover:text-emerald-400 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- COLUMN 3: TAUTAN PENTING -->
+      <div class="col-span-1">
+        <h4 class="text-white font-bold text-lg mb-6 font-space">Tautan Penting</h4>
+        <ul class="space-y-3">
+          {[
+            { label: "Profil Sekolah", link: "/profil" },
+            { label: "Visi & Misi", link: "/profil/visi-misi" },
+            { label: "Tenaga Pendidik", link: "/profil/personalia" },
+            { label: "Ekstrakurikuler", link: "/ekstrakurikuler" },
+            { label: "E-Library", link: "/e-library" }
+          ].map((item) => (
+            <li class="flex items-center group">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3 group-hover:scale-125 transition-transform"></span>
+              <a href={item.link} class="text-sm text-gray-400 hover:text-emerald-400 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- COLUMN 4: HUBUNGI KAMI -->
+      <div class="col-span-1">
+        <h4 class="text-white font-bold text-lg mb-6 font-space">Hubungi Kami</h4>
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <MapPin class="text-emerald-500 mt-0.5 shrink-0" size={18} />
+            <span class="text-sm text-gray-400 leading-snug">
+              {CONTACT_INFO.address}
+            </span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Phone class="text-emerald-500 shrink-0" size={18} />
+            <span class="text-sm text-gray-400">{CONTACT_INFO.phone}</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Mail class="text-emerald-500 shrink-0" size={18} />
+            <span class="text-sm text-gray-400">{CONTACT_INFO.email}</span>
+          </div>
+        </div>
+
+        <!-- Map Preview Image -->
+        <div class="w-full h-32 rounded-xl overflow-hidden border border-gray-700 shadow-lg relative group cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Map Location"
+            class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+          />
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="bg-emerald-500/20 backdrop-blur-sm p-2 rounded-full border border-emerald-400/50">
+              <MapPin size={20} class="text-emerald-400 drop-shadow-md" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOTTO SECTION -->
+  <div class="container mx-auto px-6">
+    <div class="flex justify-center">
+      <div class="max-w-2xl w-full text-center">
+        <p class="text-xl md:text-2xl font-serif text-white/90 tracking-widest py-4 opacity-90 border-t border-b border-gray-800/50">
+          Berkarakter <span class="text-emerald-500 mx-2 text-lg">•</span> Inovatif <span class="text-emerald-500 mx-2 text-lg">•</span> Berprestasi
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM BOTTOM FOOTER - COPYRIGHT BAR -->
+  <div class="bg-black/40 backdrop-blur-sm py-6 border-t border-emerald-900/30 relative mt-4">
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+
+    <div class="container mx-auto px-6 md:pr-28">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-gray-500">
+          &copy; 2016 – 2026, SMA Negeri 4 Jember. All rights reserved.
+        </p>
+
+        <div class="flex items-center space-x-6">
+          <span class="text-gray-400 font-medium text-xs tracking-wider hidden md:inline uppercase">Follow us in Social Media</span>
+          <div class="flex space-x-4">
+            <!-- YouTube -->
+            <a href={SOCIAL_MEDIA.youtube} target="_blank" rel="noreferrer" class="group relative w-8 h-8 flex items-center justify-center hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] rounded-full transition-shadow duration-300">
+              <div class="absolute inset-0 bg-red-600 rounded-full opacity-20 group-hover:opacity-100 group-hover:blur-md transition-all duration-300"></div>
+              <div class="relative w-8 h-8 rounded-full bg-gray-800 group-hover:bg-red-600 flex items-center justify-center text-gray-400 group-hover:text-white transition-all duration-300 border border-gray-700 group-hover:border-red-500">
+                <Youtube size={14} fill="currentColor" />
+              </div>
+            </a>
+            <!-- Instagram -->
+            <a href={SOCIAL_MEDIA.instagram} target="_blank" rel="noreferrer" class="group relative w-8 h-8 flex items-center justify-center hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] rounded-full transition-shadow duration-300">
+              <div class="absolute inset-0 bg-pink-600 rounded-full opacity-20 group-hover:opacity-100 group-hover:blur-md transition-all duration-300"></div>
+              <div class="relative w-8 h-8 rounded-full bg-gray-800 group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-red-500 group-hover:to-purple-500 flex items-center justify-center text-gray-400 group-hover:text-white transition-all duration-300 border border-gray-700 group-hover:border-pink-500">
+                <Instagram size={14} />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,58 @@
+{
+  "$ref": "#/definitions/downloads",
+  "definitions": {
+    "downloads": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Formulir",
+            "Dokumen",
+            "Panduan",
+            "Lainnya"
+          ]
+        },
+        "fileUrl": {
+          "type": "string"
+        },
+        "fileSize": {
+          "type": "string"
+        },
+        "uploadDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "category",
+        "fileUrl",
+        "uploadDate"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

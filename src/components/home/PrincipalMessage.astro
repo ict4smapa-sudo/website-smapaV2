@@ -1,0 +1,85 @@
+---
+import { Play, Quote } from 'lucide-react';
+import { PRINCIPAL_NAME } from '@/lib/constants';
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      
+      <!-- Left Side: Video/Image -->
+      <div class="relative">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80"
+            alt="Kepala Sekolah SMAN 4 Jember"
+            class="w-full h-[400px] md:h-[500px] object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          
+          <!-- Play Button Overlay -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <button class="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-2xl group">
+              <Play class="text-emerald-600 ml-1" size={32} fill="currentColor" />
+            </button>
+          </div>
+
+          <!-- Name Badge -->
+          <div class="absolute bottom-6 left-6 right-6">
+            <div class="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+              <p class="font-space font-bold text-lg text-gray-900">
+                {PRINCIPAL_NAME}
+              </p>
+              <p class="text-sm text-emerald-600 font-semibold">
+                Kepala Sekolah SMAN 4 Jember
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative Element -->
+        <div class="absolute -z-10 top-8 -right-8 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <!-- Right Side: Message -->
+      <div>
+        <span class="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold mb-6">
+          Sambutan Kepala Sekolah
+        </span>
+        
+        <h2 class="font-space font-extrabold text-4xl md:text-5xl text-gray-900 mb-6 leading-tight">
+          Membangun Generasi <span class="text-emerald-600">Emas Indonesia</span>
+        </h2>
+
+        <div class="relative">
+          <Quote class="absolute -top-4 -left-4 text-emerald-200" size={48} />
+          <div class="relative z-10 space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi SMAN 4 Jember.
+            </p>
+            <p>
+              Sebagai Kepala Sekolah, saya sangat bangga dengan prestasi yang telah diraih oleh siswa-siswi kami. SMAN 4 Jember berkomitmen untuk terus menghasilkan lulusan yang tidak hanya cerdas secara akademik, tetapi juga memiliki karakter yang kuat dan berakhlak mulia.
+            </p>
+            <p>
+              Kami percaya bahwa pendidikan adalah investasi terbaik untuk masa depan. Oleh karena itu, kami terus berinovasi dalam metode pembelajaran dan mengintegrasikan teknologi modern untuk mempersiapkan siswa menghadapi tantangan abad 21.
+            </p>
+            <p class="font-semibold text-emerald-700 italic">
+              "Mari bersama-sama membangun generasi emas Indonesia yang unggul, berkarakter, dan berprestasi."
+            </p>
+          </div>
+        </div>
+
+        <!-- Signature -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <p class="font-space font-bold text-lg text-gray-900">
+            {PRINCIPAL_NAME}
+          </p>
+          <p class="text-sm text-gray-500">
+            Kepala Sekolah SMAN 4 Jember
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

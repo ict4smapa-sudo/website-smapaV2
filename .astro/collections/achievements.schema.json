@@ -1,0 +1,81 @@
+{
+  "$ref": "#/definitions/achievements",
+  "definitions": {
+    "achievements": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Akademik",
+            "Olahraga",
+            "Seni",
+            "Bahasa",
+            "Teknologi",
+            "Keagamaan"
+          ]
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "Sekolah",
+            "Kecamatan",
+            "Kabupaten",
+            "Provinsi",
+            "Nasional",
+            "Internasional"
+          ]
+        },
+        "dateAchieved": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "studentNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string"
+        },
+        "eventName": {
+          "type": "string"
+        },
+        "year": {
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "category",
+        "level",
+        "dateAchieved",
+        "studentNames",
+        "image",
+        "eventName",
+        "year"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

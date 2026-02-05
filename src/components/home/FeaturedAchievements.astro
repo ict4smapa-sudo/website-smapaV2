@@ -1,0 +1,95 @@
+---
+import { getCollection } from 'astro:content';
+import { Trophy, Medal, ArrowRight } from 'lucide-react';
+import { formatDate } from '@/lib/utils';
+
+// Fetch achievements from content collections
+const allAchievements = await getCollection('achievements');
+
+// Sort by date (most recent first) and get top 3
+const featuredAchievements = allAchievements
+  .sort((a, b) => b.data.dateAchieved.getTime() - a.data.dateAchieved.getTime())
+  .slice(0, 3);
+---
+
+<section id="prestasi" class="py-20 bg-white relative overflow-hidden">
+  <!-- Background Decorations -->
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-emerald-50 rounded-full blur-3xl opacity-50"></div>
+  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-yellow-50 rounded-full blur-3xl opacity-50"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+      <div>
+        <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 rounded-full inline-flex items-center mb-4 shadow-md">
+          <Trophy size={12} class="mr-2" /> Hall of Fame
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-emerald-950 leading-tight font-space">
+          Prestasi <span class="text-emerald-500">Terbaru</span>
+        </h2>
+      </div>
+      <a href="/prestasi" class="hidden md:flex items-center bg-white border border-gray-200 text-emerald-950 font-bold px-6 py-3 rounded-full hover:shadow-lg hover:border-emerald-200 transition-all duration-300 group mt-4 md:mt-0 text-sm">
+        Lihat Semua Prestasi <ArrowRight size={18} class="ml-2 group-hover:translate-x-1 transition-transform text-emerald-600" />
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {featuredAchievements.map((achievement) => (
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 flex flex-col h-full group">
+          <div class="relative h-64 overflow-hidden">
+            <div class="absolute top-4 left-4 z-20">
+              <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center">
+                <Medal size={12} class="mr-1" /> {achievement.data.level}
+              </span>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+            <img
+              src={achievement.data.image}
+              alt={achievement.data.title}
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+            />
+            <!-- Badge Kategori -->
+            <div class="absolute bottom-4 left-4 z-20">
+              <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                {achievement.data.category}
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold text-gray-800 mb-3 leading-tight group-hover:text-emerald-600 transition-colors font-space">
+              {achievement.data.title}
+            </h3>
+
+            <div class="text-sm text-gray-500 mb-3">
+              <span class="font-semibold">Tahun:</span> {achievement.data.year}
+            </div>
+
+            <div class="text-sm text-gray-500 mb-4">
+              <span class="font-semibold">Kompetisi:</span> {achievement.data.eventName}
+            </div>
+
+            {achievement.data.studentNames && achievement.data.studentNames.length > 0 && (
+              <div class="text-sm text-gray-500 mb-4">
+                <span class="font-semibold">Siswa:</span> {achievement.data.studentNames.join(', ')}
+              </div>
+            )}
+
+            <div class="mt-auto">
+              <a href={`/prestasi/${achievement.slug}`} class="inline-flex items-center text-emerald-600 text-sm font-bold hover:text-emerald-700 group/link">
+                Selengkapnya 
+                <ArrowRight size={16} class="ml-1 group-hover/link:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile "Lihat Semua" Button -->
+    <div class="mt-8 text-center md:hidden">
+      <a href="/prestasi" class="inline-flex items-center bg-emerald-600 text-white font-bold px-8 py-3 rounded-full hover:bg-emerald-700 transition-all duration-300 shadow-lg">
+        Lihat Semua Prestasi <ArrowRight size={18} class="ml-2" />
+      </a>
+    </div>
+  </div>
+</section>

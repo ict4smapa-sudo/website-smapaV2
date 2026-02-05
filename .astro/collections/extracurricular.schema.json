@@ -1,0 +1,49 @@
+{
+  "$ref": "#/definitions/extracurricular",
+  "definitions": {
+    "extracurricular": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Wajib",
+            "Olahraga",
+            "Seni Budaya",
+            "Seni Musik",
+            "Ketertiban",
+            "Akademik",
+            "Kerohanian",
+            "Kemanusiaan",
+            "Bela Diri"
+          ]
+        },
+        "image": {
+          "type": "string"
+        },
+        "instructor": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "category",
+        "image"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

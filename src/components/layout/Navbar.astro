@@ -1,0 +1,167 @@
+---
+import { NAVIGATION_MENU } from '@/lib/constants';
+import { Search, GraduationCap } from 'lucide-react';
+import MobileMenu from './MobileMenu';
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 h-20 flex items-center bg-transparent border-b border-white/10">
+  <div class="container mx-auto px-6 flex justify-between items-center">
+    
+    <!-- Logo & School Name -->
+    <a href="/" class="flex items-center gap-3 group cursor-pointer">
+      <div class="w-12 h-12 rounded-full overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-300">
+        <img
+          src="/image/logo_smapa.PNG"
+          alt="Logo SMAN 4 Jember"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      
+      <div class="flex flex-col">
+        <span class="font-space font-extrabold text-xl leading-tight text-white navbar-text">
+          SMAN 4
+        </span>
+        <span class="text-sm font-medium tracking-widest text-emerald-100 navbar-subtext">
+          JEMBER <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-200/20 ml-1 border border-white/10">Est. 1977</span>
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex items-center gap-1 bg-emerald-950/10 backdrop-blur-sm p-1 rounded-full border border-white/10">
+      {NAVIGATION_MENU.map((item) => (
+        <div class="relative group">
+          <a
+            href={item.link}
+            class={`px-4 py-2 rounded-full text-xs xl:text-sm font-bold transition-all duration-300 flex items-center gap-1 navbar-link ${
+              currentPath === item.link
+                ? 'bg-emerald-600 text-white'
+                : 'text-white/90 hover:bg-white/10 hover:text-white'
+            }`}
+          >
+            {item.label}
+            {item.items && <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:rotate-180 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>}
+          </a>
+
+          {/* Dropdown Menu */}
+          {item.items && (
+            <div class="absolute top-full left-0 pt-3 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 z-50">
+              <div class="bg-white rounded-xl shadow-xl border border-emerald-100 overflow-hidden py-1">
+                {item.items.map((subItem) => (
+                  <a
+                    href={subItem.link}
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+                  >
+                    {subItem.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Right Side: Search + PPDB CTA -->
+    <div class="hidden lg:flex items-center gap-3">
+      <button class="p-2 rounded-full transition-colors hover:bg-white/10 text-white navbar-icon">
+        <Search size={20} />
+      </button>
+      <a 
+        href="/ppdb" 
+        class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:scale-105 active:scale-95 text-white px-5 py-2 rounded-full font-bold text-sm shadow-lg shadow-emerald-500/30 transition-all duration-300 flex items-center gap-2 border border-white/20"
+      >
+        <GraduationCap size={16} /> PPDB 2026
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      id="mobile-menu-toggle"
+      class="lg:hidden p-2"
+      aria-label="Toggle mobile menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white navbar-icon" id="menu-icon"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-900 navbar-icon hidden" id="close-icon"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Component (React) -->
+<MobileMenu client:load />
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    const navbarText = document.querySelectorAll('.navbar-text');
+    const navbarSubtext = document.querySelectorAll('.navbar-subtext');
+    const navbarLinks = document.querySelectorAll('.navbar-link');
+    const navbarIcons = document.querySelectorAll('.navbar-icon');
+    
+    if (window.scrollY > 50) {
+      navbar?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-lg', 'border-emerald-100');
+      navbar?.classList.remove('bg-transparent', 'border-white/10');
+      
+      navbarText.forEach(el => {
+        el.classList.add('text-emerald-950');
+        el.classList.remove('text-white');
+      });
+      
+      navbarSubtext.forEach(el => {
+        el.classList.add('text-emerald-600/80');
+        el.classList.remove('text-emerald-100');
+      });
+      
+      navbarLinks.forEach(el => {
+        if (!el.classList.contains('bg-emerald-600')) {
+          el.classList.add('text-emerald-800', 'hover:bg-emerald-100');
+          el.classList.remove('text-white/90', 'hover:bg-white/10');
+        }
+      });
+      
+      navbarIcons.forEach(el => {
+        el.classList.add('text-emerald-700', 'hover:bg-emerald-50');
+        el.classList.remove('text-white', 'hover:bg-white/10');
+      });
+    } else {
+      navbar?.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-lg', 'border-emerald-100');
+      navbar?.classList.add('bg-transparent', 'border-white/10');
+      
+      navbarText.forEach(el => {
+        el.classList.remove('text-emerald-950');
+        el.classList.add('text-white');
+      });
+      
+      navbarSubtext.forEach(el => {
+        el.classList.remove('text-emerald-600/80');
+        el.classList.add('text-emerald-100');
+      });
+      
+      navbarLinks.forEach(el => {
+        if (!el.classList.contains('bg-emerald-600')) {
+          el.classList.remove('text-emerald-800', 'hover:bg-emerald-100');
+          el.classList.add('text-white/90', 'hover:bg-white/10');
+        }
+      });
+      
+      navbarIcons.forEach(el => {
+        el.classList.remove('text-emerald-700', 'hover:bg-emerald-50');
+        el.classList.add('text-white', 'hover:bg-white/10');
+      });
+    }
+  });
+
+  // Mobile menu toggle
+  const toggleButton = document.getElementById('mobile-menu-toggle');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  
+  toggleButton?.addEventListener('click', () => {
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    document.dispatchEvent(new CustomEvent('toggleMobileMenu'));
+  });
+</script>

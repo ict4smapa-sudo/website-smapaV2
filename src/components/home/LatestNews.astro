@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import { Calendar, ArrowRight, ExternalLink } from 'lucide-react';
+import { formatDate } from '@/lib/utils';
+
+// Fetch news from content collections
+const allNews = await getCollection('news');
+
+// Sort by date (most recent first) and get top 3
+const latestNews = allNews
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+// Category color mapping
+const categoryColors: Record<string, string> = {
+  'AKADEMIK': 'bg-blue-500',
+  'PRESTASI': 'bg-emerald-500',
+  'GURU & STAFF': 'bg-purple-500',
+  'PENGUMUMAN': 'bg-red-500',
+  'KEGIATAN': 'bg-yellow-500'
+};
+---
+
+<section id="berita" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+      <div>
+        <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 rounded-full inline-flex items-center mb-4 shadow-md">
+          <ExternalLink size={12} class="mr-2" /> Informasi Terkini
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-emerald-950 leading-tight font-space">
+          Kabar <span class="text-emerald-500">SMAPA</span>
+        </h2>
+      </div>
+      <a href="/berita" class="hidden md:flex items-center bg-white border border-gray-200 text-emerald-950 font-bold px-6 py-3 rounded-full hover:shadow-lg hover:border-emerald-200 transition-all duration-300 group mt-4 md:mt-0 text-sm">
+        Indeks Berita <ArrowRight size={18} class="ml-2 group-hover:translate-x-1 transition-transform text-emerald-600" />
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {latestNews.map((news) => (
+        <div class="bg-white rounded-lg shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 group cursor-pointer">
+          <div class="relative h-48 overflow-hidden">
+            <div class={`absolute top-4 right-4 ${categoryColors[news.data.category] || 'bg-gray-500'} text-white text-xs font-bold px-3 py-1 rounded-sm z-10 uppercase`}>
+              {news.data.category}
+            </div>
+            <img
+              src={news.data.image}
+              alt={news.data.title}
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-gray-400 text-xs mb-3">
+              <Calendar size={14} class="mr-2" />
+              {formatDate(news.data.date)}
+            </div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3 leading-tight group-hover:text-emerald-600 transition-colors">
+              {news.data.title}
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+              {news.data.excerpt}
+            </p>
+
+            {news.data.tags && news.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mb-4">
+                {news.data.tags.slice(0, 3).map((tag: string) => (
+                  <span class="text-xs bg-emerald-50 text-emerald-600 px-2 py-1 rounded-full">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <a href={`/berita/${news.slug}`} class="inline-block text-emerald-600 text-xs font-bold tracking-wider underline decoration-2 decoration-transparent group-hover:decoration-emerald-600 transition-all">
+              BACA SELENGKAPNYA
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile "Indeks Berita" Button -->
+    <div class="mt-8 text-center md:hidden">
+      <a href="/berita" class="inline-flex items-center bg-emerald-600 text-white font-bold px-8 py-3 rounded-full hover:bg-emerald-700 transition-all duration-300 shadow-lg">
+        Indeks Berita <ArrowRight size={18} class="ml-2" />
+      </a>
+    </div>
+  </div>
+</section>

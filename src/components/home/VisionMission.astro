@@ -1,0 +1,70 @@
+---
+import { ChevronRight, Target, Lightbulb } from 'lucide-react';
+import { MISSION_ITEMS } from '@/lib/constants';
+---
+
+<section id="visi-misi" class="py-20 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold mb-4">
+        Visi & Misi
+      </span>
+      <h2 class="font-space font-extrabold text-4xl md:text-5xl text-gray-900 mb-4">
+        Arah & Tujuan <span class="text-emerald-600">SMAPA</span>
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        Komitmen kami dalam mewujudkan pendidikan berkualitas dan berkarakter
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Visi Card -->
+      <div class="md:col-span-1">
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-emerald-100 h-full hover:shadow-xl transition-all duration-300">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+              <Target class="text-white" size={24} />
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 font-space">
+              Visi Sekolah
+            </h3>
+          </div>
+          <div class="relative">
+            <div class="absolute -left-2 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 to-teal-600 rounded-full"></div>
+            <p class="text-gray-700 leading-relaxed pl-4 text-base italic">
+              "Terwujudnya siswa yang beriman, bertakwa, berakhlak mulia, cerdas, terampil, kreatif, inovatif, mandiri, dan berwawasan global berdasarkan Pancasila."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Misi Card -->
+      <div class="md:col-span-2">
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-emerald-100 h-full hover:shadow-xl transition-all duration-300">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+              <Lightbulb class="text-white" size={24} />
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 font-space">
+              Misi Sekolah
+            </h3>
+          </div>
+          <div class="grid md:grid-cols-2 gap-x-8 gap-y-4">
+            {MISSION_ITEMS.map((mission, index) => (
+              <div class="flex items-start group">
+                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold mt-0.5 mr-3 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                  {index + 1}
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  {mission}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+---
+import { BookOpen, Users, Award, Trophy } from 'lucide-react';
+---
+
+<section class="py-20 bg-gradient-to-b from-white to-emerald-50/30">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      
+      <!-- Stat 1: Total Siswa -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-100 group hover:-translate-y-2">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <Users class="text-white" size={32} />
+          </div>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-emerald-600 mb-2 font-space">
+            800+
+          </h3>
+          <p class="text-gray-600 text-sm font-medium">
+            Siswa Aktif
+          </p>
+        </div>
+      </div>
+
+      <!-- Stat 2: Guru & Staff -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-100 group hover:-translate-y-2">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <BookOpen class="text-white" size={32} />
+          </div>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-blue-600 mb-2 font-space">
+            65+
+          </h3>
+          <p class="text-gray-600 text-sm font-medium">
+            Guru & Staff
+          </p>
+        </div>
+      </div>
+
+      <!-- Stat 3: Ekstrakurikuler -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-100 group hover:-translate-y-2">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <Trophy class="text-white" size={32} />
+          </div>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-yellow-600 mb-2 font-space">
+            15+
+          </h3>
+          <p class="text-gray-600 text-sm font-medium">
+            Ekstrakurikuler
+          </p>
+        </div>
+      </div>
+
+      <!-- Stat 4: Prestasi -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-100 group hover:-translate-y-2">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <Award class="text-white" size={32} />
+          </div>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-pink-600 mb-2 font-space">
+            100+
+          </h3>
+          <p class="text-gray-600 text-sm font-medium">
+            Prestasi Siswa
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
